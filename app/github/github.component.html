@@ -1,0 +1,70 @@
+<div class="row">
+    <div class="col-md-12">
+        <form action="" method="POST" role="form">
+            <legend>Search user on github: {{username}}</legend>
+
+            <div class="form-group">
+                <label for="github-username-input">
+                    Type Github Username: <small class="text-muted"><i>ex: rkh, fabpot, josh, GrahamCampbell, weierophinney, SamyPesse </i></small>
+                </label>
+                <input type="text" class="form-control" id="github-username-input" placeholder="ex: sherifsaleh" [(ngModel)]="username" (keyup)="search()">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+</div>
+<section class="panel panel-default" *ngIf="user">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a  href="{{user.html_url}}" title="View  {{user.name}}'s Github profile" target="_blank">
+                {{user.name}}
+            </a>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="media">
+            <a class="pull-left" href="{{user.html_url}}" title="View  {{user.name}}'s Github profile " target="_blank">
+                <img class="media-object img-responsive img-circle" src="{{user.avatar_url}}" alt="Image" width="96">
+            </a>
+            <div class="media-body">
+                <h4 class="media-heading">About: </h4>
+                <div class="stats">
+                    <span class="label label-primary">{{user.public_repos}} Public Repos</span>
+                    <span class="label label-success">{{user.public_gists}} Public Gists</span>
+                    <span class="label label-info">{{user.followers}} Followers</span>
+                    <span class="label label-warning">{{user.following}} Following</span>
+                </div>
+                <br>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>Username:</strong> {{user.login}}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Location:</strong> {{user.location}}
+                    </li>
+                    <li class="list-group-item" *ngIf="user.email">
+                        <strong>Email:</strong> <a href="mailto:{{user.email}}" target="_blank">{{user.email}}</a>
+                    </li>
+                    <li class="list-group-item" *ngIf="user.blog">
+                        <strong>Blog:</strong> <a href="mailto:{{user.blog}}" target="_blank">{{user.blog}}</a>
+                    </li>
+                    <li class="list-group-item">
+                        <strong>Member Since:</strong> {{user.created_at}}
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<article class="panel panel-default" *ngFor="let repo of repos">
+    <div class="panel-heading">
+        <h4 class="panel-title"><a href="{{repo.html_url}}" title="View {{repo.name}}" target="_blank">{{repo.name | uppercase }}</a> <sup>Repo</sup></h4>
+        <p>{{repo.description}}</p>
+    </div>
+    <div class="panel-body">
+        <span class="label label-primary">{{repo.watchers}} Watchers</span>
+        <span class="label label-success">{{repo.forks}} Forks</span>
+
+    </div>
+</article>
