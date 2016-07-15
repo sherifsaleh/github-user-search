@@ -10,6 +10,7 @@ export class GithubComponent {
     user: any;
     repos: any;
     username: any;
+    tweets: any;
     constructor(private _githubService: GithubService) {
         this._githubService.getUser().subscribe(user => {
             this.user = user;

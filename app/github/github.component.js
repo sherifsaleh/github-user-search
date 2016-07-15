@@ -20,6 +20,10 @@ var GithubComponent = (function () {
         this._githubService.getRepos().subscribe(function (repos) {
             _this.repos = repos;
         });
+        this._githubService.getTweets().subscribe(function (tweets) {
+            _this.tweets = tweets;
+            console.log(_this.tweets);
+        });
     }
     GithubComponent.prototype.search = function () {
         var _this = this;

@@ -21,4 +21,9 @@ export class GithubService {
     updateUsername( username: any ){
         this.username = username;
     }
+
+    getTweets(){
+        return this._http.get('https://api.twitter.com/1.1/search/tweets.json?q=%23freebandnames&since_id=24012619984051000&max_id=250126199840518145&result_type=mixed&count=4')
+                .map(res => res.json());
+    }
 }

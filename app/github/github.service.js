@@ -29,6 +29,10 @@ var GithubService = (function () {
     GithubService.prototype.updateUsername = function (username) {
         this.username = username;
     };
+    GithubService.prototype.getTweets = function () {
+        return this._http.get('https://api.twitter.com/1.1/search/tweets.json?q=%23freebandnames&since_id=24012619984051000&max_id=250126199840518145&result_type=mixed&count=4')
+            .map(function (res) { return res.json(); });
+    };
     GithubService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [http_1.Http])
